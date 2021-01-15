@@ -5,13 +5,9 @@ from django.contrib import messages
 
 def index(request):
     return render(request, 'index.html')
-    #return HttpResponse('This is Homepage')
 
 def about(request):
     return render(request, 'about.html')
-
-def services(request):
-    return render(request, 'services.html')
 
 def contacts(request):
     if request.method == "POST":
