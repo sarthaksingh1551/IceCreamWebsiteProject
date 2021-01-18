@@ -1,54 +1,151 @@
 <!doctype html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-    <title>{% block title %}{% endblock title %} | HoneYed</title>
-  </head>
+  <title>{% block title %}{% endblock title %} | HoneYed</title>
+</head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">HoneYed</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+  <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #3b7070;"">
+    <div class=" container-fluid">
+    <a class="navbar-brand" href="/">HoneYed</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/menu">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/about">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/contacts">Contact Us</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-light btn-circle" type="submit" ;><img src="/static/icon/search1.png"></button>
+      </form>
+
+      <!-- Button to trigger login modal -->
+      <button type="button" class="btn btn-light mx-2" data-bs-toggle="modal" data-bs-target="#login">
+        Login
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/about">About Us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/contacts">Contact Us</a>
-          </li>
-        </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-light" type="submit";><img src="/static/icon/search1.png"></button>
-        </form>
-      </div>
+
+      <!-- Button to trigger signup modal -->
+      <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#signup">
+        Sign Up
+      </button>
+
+    </div>
     </div>
   </nav>
 
   {% if messages %}
-    {% for message in messages %}
-      <div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
-        <strong>{{ message }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    {% endfor %}
+  {% for message in messages %}
+  <div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+    <strong>{{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %}
   {% endif %}
 
-    {% block body %} {% endblock body %}
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+  <!--signup Modal -->
+  <div class="modal fade" id="signup" tabindex="-1" aria-labelledby="signup" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signup">Register</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/signup" method='post'>
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="fname" class="form-label">First Name</label>
+              <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter your First Name">
+            </div>
+
+            <div class="mb-3">
+              <label for="lname" class="form-label">Last Name</label>
+              <input type="text" class="form-control"  id="lname" name="lname" placeholder="Enter your Last Name">
+            </div>
+
+            <div class="mb-3">
+              <label for="username" class="form-label">username</label>
+              <input type="text" class="form-control"  id="username" name="username" placeholder="Enter your Username">
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Id</label>
+              <input type="email" class="form-control"  id="email" name="email" placeholder="Enter your Email">
+            </div>
+
+            <div class="mb-3">
+              <label for="pass1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Choose your Password">
+            </div>
+
+            <div class="mb-3">
+              <label for="pass2" class="form-label">Confirm Password</label>
+              <input type="password" class="form-control" id="pass2" name="pass1" placeholder="Enter your Password Again">
+            </div>
+            <button type="submit" class="btn btn-primary">submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--login Modal -->
+  <div class="modal fade" id="login" tabindex="-1" aria-labelledby="login" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="login">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="loginemail" class="form-label">Email Id</label>
+            <input type="email" class="form-control" id="loginemail" placeholder="Enter your Email">
+          </div>
+
+          <div class="mb-3">
+            <label for="loginpass" class="form-label">Password</label>
+            <input type="password" class="form-control" id="loginpass" placeholder="Enter your Password">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% block body %} {% endblock body %}
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
 
 </body>
+
 </html>
