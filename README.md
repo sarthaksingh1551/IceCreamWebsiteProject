@@ -1,5 +1,5 @@
 # IceCreamWebsiteProject
-This project is made using Django framework.
+This website is designed using Django & Bootstrap framework and the code is written in Python Programming Language.
 
 ## Homepage
 ![](ReadmeImages/homepage.jpg)
