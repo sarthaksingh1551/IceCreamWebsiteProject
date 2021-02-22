@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #3b7070;"">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark " style="background-color: #3b7070;"">
     <div class=" container-fluid">
     <a class="navbar-brand" href="/">HoneYed</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -73,41 +73,45 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/signup" method='post'>
+          <form action="/signup" method="post">
             {% csrf_token %}
             <div class="mb-3">
               <label for="fname" class="form-label">First Name</label>
-              <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter your First Name">
+              <input type="text" class="form-control" id="fname" name="fname" placeholder="Enter your First Name"
+                required>
             </div>
 
             <div class="mb-3">
               <label for="lname" class="form-label">Last Name</label>
-              <input type="text" class="form-control"  id="lname" name="lname" placeholder="Enter your Last Name">
+              <input type="text" class="form-control" id="lname" name="lname" placeholder="Enter your Last Name"
+                required>
             </div>
 
             <div class="mb-3">
               <label for="username" class="form-label">username</label>
-              <input type="text" class="form-control"  id="username" name="username" placeholder="Enter your Username">
+              <input type="text" class="form-control" id="username" name="username" placeholder="Enter your Username"
+                required>
             </div>
 
             <div class="mb-3">
               <label for="email" class="form-label">Email Id</label>
-              <input type="email" class="form-control"  id="email" name="email" placeholder="Enter your Email">
+              <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Email" required>
             </div>
 
             <div class="mb-3">
               <label for="pass1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Choose your Password">
+              <input type="password" class="form-control" id="pass1" name="pass1" placeholder="Choose your Password"
+                required>
             </div>
 
             <div class="mb-3">
               <label for="pass2" class="form-label">Confirm Password</label>
-              <input type="password" class="form-control" id="pass2" name="pass1" placeholder="Enter your Password Again">
+              <input type="password" class="form-control" id="pass2" name="pass2"
+                placeholder="Enter your Password Again" required>
             </div>
             <button type="submit" class="btn btn-primary">submit</button>
           </form>
         </div>
-        <div class="modal-footer">
 
         </div>
       </div>
@@ -123,18 +127,19 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <label for="loginemail" class="form-label">Email Id</label>
-            <input type="email" class="form-control" id="loginemail" placeholder="Enter your Email">
-          </div>
+          <form action="/login" method="post">
+          {% csrf_token %}
+            <div class="mb-3">
+              <label for="loginusername" class="form-label">Username</label>
+              <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Enter your Username" required>
+            </div>
 
-          <div class="mb-3">
-            <label for="loginpass" class="form-label">Password</label>
-            <input type="password" class="form-control" id="loginpass" placeholder="Enter your Password">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Login</button>
+            <div class="mb-3">
+              <label for="pass" class="form-label">Password</label>
+              <input type="password" class="form-control" id="loginpass" name="loginpass" placeholder="Enter your Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary" >Login</button>
+          </form>
         </div>
       </div>
     </div>
